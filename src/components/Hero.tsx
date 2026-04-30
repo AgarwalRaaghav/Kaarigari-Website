@@ -1,36 +1,22 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowDownRight, Globe, Sparkles } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { CASE_STUDIES } from '../constants';
 
 export default function Hero() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const images = CASE_STUDIES.map(study => study.image);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [images.length]);
 
   return (
     <section className="relative min-h-screen pt-32 pb-20 px-6 overflow-hidden flex flex-col items-center justify-center text-brand-base rounded-b-[40px] md:rounded-b-[80px]" id="hero">
-      {/* Background Images Carousel */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-brand-accent z-10 opacity-70" />
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentImage}
-            src={images[currentImage]}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover grayscale opacity-30"
-            referrerPolicy="no-referrer"
-          />
-        </AnimatePresence>
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 bg-brand-base">
+        <div className="absolute inset-0 bg-brand-base/60 mix-blend-multiply z-10" />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale"
+        >
+          <source src="/hero-video.webm" type="video/webm" />
+        </video>
       </div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
