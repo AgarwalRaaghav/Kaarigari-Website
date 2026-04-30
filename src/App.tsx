@@ -25,7 +25,7 @@ function ScrollToTop() {
 export default function App() {
   return (
     <Router>
-      <div className="bg-brand-black selection:bg-brand-lime selection:text-brand-black min-h-screen">
+      <div className="bg-brand-base selection:bg-brand-accent selection:text-brand-base min-h-screen">
         <ScrollToTop />
         <Navbar />
         <AnimatePresence mode="wait">
